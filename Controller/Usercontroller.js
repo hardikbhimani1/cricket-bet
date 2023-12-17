@@ -13,7 +13,9 @@ function generateOTP() {
 exports.Register = async (req, res) => {
     try {
       const email = req.body.email 
-      console.log(email,'sadsdasdas')
+      if(!email){
+        return res.status(500).json({ error: "Ple Enter Email" });
+      }
       let existingUser = await Player.findOne({ email });
       if (existingUser) {
         const otp = generateOTP();
@@ -85,8 +87,46 @@ exports.Register = async (req, res) => {
       res.status(500).json({ error: "Registration failed" });
     }
   };
-exports.getdata = async (req, res) => {
-const email = req.body.email
-console.log(email,'qwfdsads')
+exports.VerifyOTP = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ error: "Email and OTP are required" });
+    }
+    const user = await Player.findOne({ email:email});
+    console.log(user,'useruser')
+    if (!user) {
+      return res.status(404).json({ error: "Invalid  Email" });
+    }
+    if(user.otp == otp){
+      return res.json({ message: "OTP verified successfully" });
+    }else{
+      return res.status(404).json({ error: "Invalid OTP " });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "OTP verification failed" });
+  }
 };
   
+exports.updateUser = async (req, res) => {
+  try {
+    const { firstname, lastname,email } = req.body;
+    const imageUrls = req.files["profilepic"] ? req.files["profilepic"][0] : null;
+    const updateData = {
+      firstname,
+      lastname,
+    };
+    if (imageUrls) {
+      updateData.profilepic = imageUrls;
+    }
+    const blog = await Player.findOne({email});
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    Object.assign(blog, updateData);
+    await blog.save();
+    res.json({ message: "Player updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating Player" });
+  }
+};
