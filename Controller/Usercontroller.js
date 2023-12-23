@@ -111,21 +111,21 @@ exports.VerifyOTP = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { firstname, lastname,email } = req.body;
-    const imageUrls = req.files["profilepic"] ? req.files["profilepic"][0] : null;
+    // const imageUrls = req.files["profilepic"] ? req.files["profilepic"][0] : null;
     const updateData = {
       firstname,
       lastname,
     };
-    if (imageUrls) {
-      updateData.profilepic = imageUrls;
-    }
+    // if (imageUrls) {
+    //   updateData.profilepic = imageUrls;
+    // }
     const blog = await Player.findOne({email});
     if (!blog) {
       return res.status(404).json({ message: "Blog not found" });
     }
     Object.assign(blog, updateData);
     await blog.save();
-    res.json({ message: "Player updated successfully" });
+    res.json({ message: "Player updated successfully",data:blog });
   } catch (error) {
     res.status(500).json({ message: "Error updating Player" });
   }

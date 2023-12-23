@@ -1,65 +1,110 @@
-const axios = require('axios');
-// Assuming the correct library and initialization
-const cricLive = require('cric-live');
+const axios = require("axios");
 
-// Initialize the library if required
-// cricLive.init({ /* initialization parameters */ });
+exports.InternationalLiveMatch = async (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://live-line.p.rapidapi.com/liveMatches",
+    headers: {
+      "X-RapidAPI-Key": "ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18",
+      "X-RapidAPI-Host": "live-line.p.rapidapi.com",
+    },
+  };
 
-// Make the API call to get live scores
-cricLive.getLiveScore((error, scores) => {
-  if (error) {
-    console.error('Error fetching live scores:', error);
-  } else {
-    console.log('Live scores:', scores);
+  try {
+    const response = await axios.request(options);
+    res.json({ Data: response.data, message: "Live Match finded" });
+  } catch (error) {
+    console.error(error);
   }
-});
+};
 
+exports.InternationalUpcomingMatchs = async (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://live-line.p.rapidapi.com/upcomingMatches",
+    headers: {
+      "X-RapidAPI-Key": "ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18",
+      "X-RapidAPI-Host": "live-line.p.rapidapi.com",
+    },
+  };
+  try {
+    const response = await axios.request(options);
+    res.json({
+      Data: response.data,
+      message: "Upcoming Match finded",
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-// exports.InternationalMatch = async (req, res) => {
-//     const options = {
-//         method: 'GET',
-//         url: 'https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent',
-//         headers: {
-//             'X-RapidAPI-Key': 'ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18',
-//             'X-RapidAPI-Host': 'cricbuzz-cricket.p.rapidapi.com',
-//         },
-//     };
-//     try {
-//         const response = await axios.request(options);
-//         const International = response?.data?.typeMatches
-//         const NewInternational = International.map((Data)=>{
-//             if(Data.matchType == "International"){
-//                 return Data
-//             }
-//         })
-//         const responseData = {
-//             status: response.status,
-//             statusText: response.statusText,
-//             data: NewInternational,
-//         };
+exports.InternationalResultsMatchs = async (req, res) => {
+  const options = {
+    method: "GET",
+    url: "https://live-line.p.rapidapi.com/recentMatches",
+    headers: {
+      "X-RapidAPI-Key": "ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18",
+      "X-RapidAPI-Host": "live-line.p.rapidapi.com",
+    },
+  };
+  try {
+    const response = await axios.request(options);
+    res.json({ Data: response.data, message: "results Match finded" });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-//         res.json(responseData);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// };
+exports.MatchInfo = async (req, res) => {
+  const MatchID = req.body.id;
+  const options = {
+    method: "GET",
+    url: `https://live-line.p.rapidapi.com/matchInfo/${MatchID}`,
+    headers: {
+      "X-RapidAPI-Key": "ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18",
+      "X-RapidAPI-Host": "live-line.p.rapidapi.com",
+    },
+  };
 
-exports.InternationalMatch = async (req, res) => {
-    const options = {
-        method: 'GET',
-        url: 'https://live-cricket-score-upcoming-matches.p.rapidapi.com/static-content/10s/cricket-liupre.json',
-        headers: {
-          'X-RapidAPI-Key': 'ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18',
-          'X-RapidAPI-Host': 'live-cricket-score-upcoming-matches.p.rapidapi.com'
-        }
-      };
-      
-      try {
-          const response = await axios.request(options);
-          res.json(response.data)
-          console.log(response.data);
-      } catch (error) {
-          console.error(error);
-      }
+  try {
+    const response = await axios.request(options);
+    res.json({ Data: response.data, message: "MatchInfo finded" });
+  } catch (error) {
+    console.error(error);
+  }
+};
+exports.MatchSquads = async (req, res) => {
+  // const MatchID = req.body.id;
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://live-line.p.rapidapi.com/matchSquads/3886',
+  //   headers: {
+  //     'X-RapidAPI-Key': 'ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18',
+  //     'X-RapidAPI-Host': 'live-line.p.rapidapi.com'
+  //   }
+  // }
+
+  // try {
+  //   const response = await axios.request(options);
+  //   res.json({ Data: response.data, message: "matchSquads finded" });
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  const axios = require("axios");
+
+  const options = {
+    method: "GET",
+    url: "https://live-line.p.rapidapi.com/matchSquads/2799",
+    headers: {
+      "X-RapidAPI-Key": "ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18",
+      "X-RapidAPI-Host": "live-line.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
 };

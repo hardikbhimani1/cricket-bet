@@ -26,6 +26,6 @@ const storage = multer.diskStorage({
 
 UserRouter.post("/sendOtp", Player.Register);
 UserRouter.post("/verifyOTP", Player.VerifyOTP);
-UserRouter.put("/update",upload.fields([{ name: "profilepic" }]), Player.updateUser);
+UserRouter.post("/update",Player.updateUser);
 
 module.exports = UserRouter;
