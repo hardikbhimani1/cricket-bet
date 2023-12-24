@@ -86,7 +86,8 @@ exports.Register = async (req, res) => {
       console.error("Error during registration:", error);
       res.status(500).json({ error: "Registration failed" });
     }
-  };
+};
+
 exports.VerifyOTP = async (req, res) => {
   try {
     const { email, otp } = req.body;
@@ -107,18 +108,14 @@ exports.VerifyOTP = async (req, res) => {
     res.status(500).json({ error: "OTP verification failed" });
   }
 };
-  
+ 
 exports.updateUser = async (req, res) => {
   try {
     const { firstname, lastname,email } = req.body;
-    // const imageUrls = req.files["profilepic"] ? req.files["profilepic"][0] : null;
     const updateData = {
       firstname,
       lastname,
     };
-    // if (imageUrls) {
-    //   updateData.profilepic = imageUrls;
-    // }
     const blog = await Player.findOne({email});
     if (!blog) {
       return res.status(404).json({ message: "Blog not found" });

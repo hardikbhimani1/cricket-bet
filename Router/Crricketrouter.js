@@ -10,5 +10,8 @@ CricketRouter.get("/match/results", Cricket.InternationalResultsMatchs);
 CricketRouter.get("/match/MatchInfo", Cricket.MatchInfo);  
 CricketRouter.get("/match/MatchSquads", Cricket.MatchSquads);  
 
+//new LineUp
+CricketRouter.get("/match", Cricket.LiveMatchs);  
+
 
 module.exports = CricketRouter;
