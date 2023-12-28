@@ -4,14 +4,14 @@ const Cricket = require('../Controller/CricketController');
 
 const CricketRouter = express.Router();
 
-CricketRouter.get("/match/live", Cricket.InternationalLiveMatch);
-CricketRouter.get("/match/upcoming", Cricket.InternationalUpcomingMatchs);  
-CricketRouter.get("/match/results", Cricket.InternationalResultsMatchs);  
-CricketRouter.get("/match/MatchInfo", Cricket.MatchInfo);  
-CricketRouter.get("/match/MatchSquads", Cricket.MatchSquads);  
+CricketRouter.post("/match/live", Cricket.InternationalLiveMatch);
+CricketRouter.post("/match/upcoming", Cricket.InternationalUpcomingMatchs);  
+CricketRouter.post("/match/results", Cricket.InternationalResultsMatchs);  
+CricketRouter.post("/match/MatchInfo", Cricket.MatchInfo);  
+CricketRouter.post("/match/MatchSquads", Cricket.MatchSquads);  
 
 //new LineUp
-CricketRouter.get("/match", Cricket.LiveMatchs);  
+CricketRouter.post("/match", Cricket.LiveMatchs);  
 
 
 module.exports = CricketRouter;
