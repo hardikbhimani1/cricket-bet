@@ -110,8 +110,8 @@ exports.MatchSquads = async (req, res) => {
 
 
 exports.LiveMatchs = async (req, res) => {
-  const MatchType = req.body.MatchType;
-  const Type = req.body.Type || "International";
+  const MatchType = "live";
+  const Type = "International";
   const options = {
     method: 'GET',
     url: 'https://unofficial-cricbuzz.p.rapidapi.com/matches/list',
