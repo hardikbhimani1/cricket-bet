@@ -109,7 +109,7 @@ exports.LiveMatchs = async (req, res) => {
     const filteredData = response.data.typeMatches.filter(match => match.matchType === Type);
     if (filteredData.length > 0) {
       const { matchType, seriesAdWrapper } = filteredData[0];
-      return res.json({ Data: seriesAdWrapper, message: ` ${Type} Matches found` });
+      return res.json({seriesAdWrapper, message: ` ${Type} Matches found` });
     } else {
       res.json({ Data: [], message: `No  ${Type} Matches found` });
     }
