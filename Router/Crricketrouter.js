@@ -12,6 +12,7 @@ CricketRouter.post("/match/MatchSquads", Cricket.MatchSquads);
 
 //new LineUp
 CricketRouter.post("/match", Cricket.LiveMatchs);  
+CricketRouter.post("/player", Cricket.GetTeams);  
 
 
 module.exports = CricketRouter;
