@@ -131,7 +131,7 @@ exports.GetTeams = async (req, res) => {
       teamId: teamId
     },
     headers: {
-      'X-RapidAPI-Key': 'ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18',
+      'X-RapidAPI-Key': 'd59abf8561msh656c16ddb1538ffp1ef55ejsnf90ac1487233',
       'X-RapidAPI-Host': 'unofficial-cricbuzz.p.rapidapi.com'
     }
   };
