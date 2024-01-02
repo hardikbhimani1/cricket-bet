@@ -100,8 +100,8 @@ exports.LiveMatchs = async (req, res) => {
     url: 'https://unofficial-cricbuzz.p.rapidapi.com/matches/list',
     params: { matchState: MatchType },
     headers: {
-      'X-RapidAPI-Key': 'ce65ad9c04mshb0533694c288bc3p1a7f8ejsn70acf14abe18',
-      'X-RapidAPI-Host': 'unofficial-cricbuzz.p.rapidapi.com',
+      'X-RapidAPI-Key': 'd59abf8561msh656c16ddb1538ffp1ef55ejsnf90ac1487233',
+      'X-RapidAPI-Host': 'unofficial-cricbuzz.p.rapidapi.com'
     },
   };
   try {
